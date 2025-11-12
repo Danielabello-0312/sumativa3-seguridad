@@ -1,11 +1,6 @@
-﻿pipeline {
+pipeline {
     agent any
     stages {
-        stage('Declarative: Checkout SCM') {
-            steps {
-                checkout scm
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Construyendo el proyecto...'
