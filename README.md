@@ -2,8 +2,8 @@
 
 ## 🔹 Integrantes del Equipo:
 - **ABELLO, Daniel** - [Danielabello-0312]
-- **BALCARCE, [Nombre]** - [Usuario GitHub]
-- **MENDEZ, [Nombre]** - [Usuario GitHub]
+- **BALCARCE, Daniel** 
+- **MENDEZ, Alexander** 
 
 ## 📚 Asignatura: DevSecOps
 ## 📋 Evaluación: Sumativa 3 - Pipeline de Seguridad
