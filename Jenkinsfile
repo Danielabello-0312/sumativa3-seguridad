@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { docker { image 'python:3.9-slim' } } 
     stages {
         stage('Build') {
             steps {
@@ -15,19 +15,11 @@ pipeline {
         }
         stage('Security Scan') {
             steps {
-                echo 'Ejecutando analisis de seguridad...'
-                sh '''
-                    echo "Simulando escaneo de seguridad con Bandit"
-                    echo "Resultado: No se encontraron vulnerabilidades criticas"
-                    echo "Archivos analizados: app.py, security_scan.py"
-                    echo "Estadisticas: 0 issues de alta severidad"
-                '''
+                echo 'Instalando herramientas de seguridad...'
+                sh 'pip install bandit'
+                echo 'Ejecutando análisis estático con Bandit...'
+                sh 'bandit -r . || true' 
             }
-        }
-    }
-    post {
-        always {
-            echo 'Pipeline DevSecOps completado exitosamente'
         }
     }
 }
