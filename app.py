@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 def main(): 
-    print("­Hola Mundo DevSecOps!") 
+    print("Hola Mundo DevSecOps!")
     return "OK" 
  
 if __name__ == "__main__": 
