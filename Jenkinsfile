@@ -1,4 +1,4 @@
-// Jenkinsfile - Pipeline DevSecOps Completo
+﻿// Jenkinsfile - Pipeline DevSecOps Completo
 pipeline {
     agent {
         docker {
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo 'Instalando herramientas de seguridad...'
                 sh 'pip install -r requirements.txt'
-                echo 'Ejecutando análisis estático con Bandit...'
+                echo 'Ejecutando analisis estatico con Bandit...'
                 sh 'bandit -r . -f txt || true'
             }
         }
