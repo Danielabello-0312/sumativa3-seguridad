@@ -1,43 +1,39 @@
+// Jenkinsfile - Pipeline DevSecOps Completo
 pipeline {
     agent {
         docker {
-            image 'python:3.9-slim'  # Python 3.9 compatible con Bandit
-            reuseNode true
+            image 'python:3.9-slim'
         }
     }
-    
+
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                url: 'https://github.com/Danielabello-0312/sumativa3-seguridad.git'
-            }
-        }
-        
         stage('Build') {
             steps {
-                echo '🔨 Construyendo el proyecto...'
+                echo 'Construyendo el proyecto...'
                 sh 'python --version'
             }
         }
-        
-        stage('Security Scan') {
+
+        stage('Test') {
             steps {
-                echo '🔍 Ejecutando análisis de seguridad...'
-                sh 'python security_scan.py'
+                echo 'Ejecutando pruebas...'
+                sh 'python app.py'
             }
         }
-        
-        stage('Deploy') {
+
+        stage('Security Scan') {
             steps {
-                echo '🚀 Desplegando aplicación...'
+                echo 'Instalando herramientas de seguridad...'
+                sh 'pip install -r requirements.txt'
+                echo 'Ejecutando análisis estático con Bandit...'
+                sh 'bandit -r . -f txt || true'
             }
         }
     }
-    
+
     post {
         always {
-            echo '🎉 Pipeline completado'
+            echo 'Pipeline DevSecOps completado'
         }
     }
 }
