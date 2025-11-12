@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'python:3.9-slim' } } 
+    agent any
     stages {
         stage('Build') {
             steps {
@@ -16,9 +16,11 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Instalando herramientas de seguridad...'
-                sh 'pip install bandit'
-                echo 'Ejecutando análisis estático con Bandit...'
-                sh 'bandit -r . || true' 
+                sh '''
+                    python3 -m pip install --user bandit
+                    echo "Ejecutando análisis estático con Bandit..."
+                    python3 -m bandit -r . -f txt || true
+                '''
             }
         }
     }
