@@ -18,6 +18,7 @@ pipeline {
                 echo 'Instalando herramientas de seguridad...'
                 sh '''
                     pip install --break-system-packages bandit==1.7.0
+                    export PATH="/var/jenkins_home/.local/bin:$PATH"
                     echo "Ejecutando analisis estatico con Bandit..."
                     bandit -r . -f txt -o bandit_report.txt
                     echo "=== RESULTADO DE BANDIT ==="
